@@ -27,7 +27,7 @@ const handleUpload = multer({
     }
 });
 
-app.post("/api/upload", validateToken, handleUpload.single("image"), (req, res) => {
+app.post("/upload", validateToken, handleUpload.single("image"), (req, res) => {
     res.json({
         success: true,
         info: "https://i.sharky.cool/" + req.file.filename
@@ -37,3 +37,5 @@ app.post("/api/upload", validateToken, handleUpload.single("image"), (req, res) 
 app.get("/", (req, res) => {
     res.send("Welcome to my ShareX server! Built using NodeJS and Nginx.");
 });
+
+app.listen(8884);
