@@ -27,7 +27,7 @@ const handleUpload = multer({
     }
 });
 
-app.post("/upload", validateToken, handleUpload.single("image"), (req, res) => {
+app.post("/api/upload", validateToken, handleUpload.single("image"), (req, res) => {
     res.json({
         success: true,
         info: "https://i.sharky.cool/" + req.file.filename
