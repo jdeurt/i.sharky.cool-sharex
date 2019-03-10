@@ -28,6 +28,11 @@ const handleUpload = multer({
 });
 
 app.post("/api/upload", validateToken, handleUpload.single("image"), (req, res) => {
+    if (!req.file) return res.json({
+        success: false,
+        info: "Valid file not received."
+    });
+
     if (req.query.plaintext) return res.send("https://i.sharky.cool/" + req.file.filename);
 
     res.json({
