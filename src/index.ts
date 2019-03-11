@@ -41,7 +41,7 @@ app.post("/api/upload", validateToken, handleUpload.single("file"), (req, res) =
 });
 
 app.get("/", (req, res) => {
-    res.send("Welcome to my ShareX server! Open source <a href=\"https://github.com/jdeurt/i.sharky.cool-sharex\">and available right here</a>.");
+    res.sendFile(__dirname + "/views/index.html");
 });
 
 app.listen(8884);
