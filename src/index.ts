@@ -27,6 +27,10 @@ const handleUpload = multer({
     }
 });
 
+app.use(express.static("/var/www/i", {
+    index: false
+}));
+
 app.post("/api/upload", validateToken, handleUpload.single("image"), (req, res) => {
     if (!req.file) return res.json({
         success: false,
