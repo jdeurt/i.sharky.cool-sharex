@@ -20,18 +20,13 @@ const storage = multer.diskStorage({
         cb(null, fileName + extension);
     }
 });
-const handleUpload = multer({
-    storage,
-    fileFilter: (req, file, cb) => {
-        cb(null, file.mimetype.startsWith("image"));
-    }
-});
+const handleUpload = multer({ storage });
 
 app.use(express.static("/var/www/i", {
     index: false
 }));
 
-app.post("/api/upload", validateToken, handleUpload.single("image"), (req, res) => {
+app.post("/api/upload", validateToken, handleUpload.single("file"), (req, res) => {
     if (!req.file) return res.json({
         success: false,
         info: "Valid file not received."
