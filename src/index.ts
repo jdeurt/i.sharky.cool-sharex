@@ -44,4 +44,9 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/views/index.html");
 });
 
+// 404
+app.get("*", (req, res) => {
+    res.sendFile("/var/www/i/404.png");
+});
+
 app.listen(8884);
