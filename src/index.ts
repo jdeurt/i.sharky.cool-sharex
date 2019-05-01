@@ -22,6 +22,12 @@ const storage = multer.diskStorage({
 });
 const handleUpload = multer({ storage });
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 app.use(express.static("/var/www/i", {
     index: false
 }));
@@ -41,9 +47,6 @@ app.post("/api/upload", validateToken, handleUpload.single("file"), (req, res) =
 });
 
 app.get("/", (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
     res.sendFile(__dirname + "/views/index.html");
 });
 
