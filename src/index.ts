@@ -41,7 +41,8 @@ app.post("/api/upload", validateToken, handleUpload.single("file"), (req, res) =
 });
 
 app.get("/", (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
     res.sendFile(__dirname + "/views/index.html");
 });
